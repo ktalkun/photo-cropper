@@ -3,6 +3,7 @@ package by.tolkun.photocropper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -44,6 +45,9 @@ public class Main extends Application {
         primaryStage.setResizable(true);
 
         initRootLayout();
+        initMenuLayout();
+
+        this.primaryStage.show();
     }
 
     /**
@@ -58,7 +62,19 @@ public class Main extends Application {
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
-            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initMenuLayout() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    Main.class.getResource("view/MenuView.fxml"));
+            AnchorPane menuLayout = loader.load();
+
+            rootLayout.setTop(menuLayout);
         } catch (IOException e) {
             e.printStackTrace();
         }
